@@ -17,5 +17,15 @@ describe('ProductsService', function () {
     // Assert
     expect(responseService).to.be.deep.equal(parameters);
     expect(ProductModel.create).to.have.been.calledOnceWith(newProduct);
-  } );  
+  } );
+  it('should be product is listed', async function () {
+    // Arrange
+    const products = productsMock.listProducts.map(product => ProductModel.build(product));
+    sinon.stub(ProductModel, 'findAll').resolves(products);
+    // Act
+    const responseService = await productsService.list();
+    // Assert
+    expect(responseService).to.be.deep.equal(productsMock.listProducts);
+    expect(ProductModel.findAll).to.have.been.calledOnce;
+  })  
 });

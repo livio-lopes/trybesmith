@@ -28,6 +28,15 @@ describe('ProductsController', function () {
     expect(res.status).to.have.been.calledWith(productsMock.statusCode.CREATED)
     expect(res.json).to.have.been.calledWith(productsMock.productCreated)
   })
+  it('should be product is listed', async function () {
+    //arrange
+    sinon.stub(ProductService, 'listProducts').resolves(productsMock.listProducts)
+    //act
+    await ProductController.listProducts(req, res)
+    //assert
+    expect(res.status).to.have.been.calledWith(productsMock.statusCode.OK)
+    expect(res.json).to.have.been.calledWith(productsMock.listProducts)
+  })
 
 
 });

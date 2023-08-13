@@ -6,6 +6,7 @@ const ProductModel = require('../../../src/database/models/product.model').defau
 
 describe('ProductsService', function () {
   beforeEach(function () { sinon.restore(); });
+  
   it('should be product is created', async function () {
     // Arrange
     const parameters = productsMock.productCreated;
@@ -18,12 +19,13 @@ describe('ProductsService', function () {
     expect(responseService).to.be.deep.equal(parameters);
     expect(ProductModel.create).to.have.been.calledOnceWith(newProduct);
   } );
+
   it('should be product is listed', async function () {
     // Arrange
-    const products = productsMock.listProducts.map(product => ProductModel.build(product));
+    const products = productsMock.listProducts.map(product => ProductModel.build(product).dataValues);
     sinon.stub(ProductModel, 'findAll').resolves(products);
     // Act
-    const responseService = await productsService.list();
+    const responseService = await productsService.listProducts();
     // Assert
     expect(responseService).to.be.deep.equal(productsMock.listProducts);
     expect(ProductModel.findAll).to.have.been.calledOnce;

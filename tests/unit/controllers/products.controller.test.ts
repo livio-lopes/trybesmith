@@ -5,6 +5,7 @@ import { Request, Response } from 'express';
 import ProductService from '../../../src/services/products.service';
 import ProductController from '../../../src/controllers/products.controller';
 import productsMock from '../../mocks/products.mock';
+import ProductModel, { ProductSequelizeModel } from '../../../src/database/models/product.model';
 
 chai.use(sinonChai);
 
@@ -30,12 +31,13 @@ describe('ProductsController', function () {
   })
   it('should be product is listed', async function () {
     //arrange
-    sinon.stub(ProductService, 'listProducts').resolves(productsMock.listProducts)
+    const parameters = productsMock.listProducts.map(product => ProductModel.build(product))
+    sinon.stub(ProductService, 'listProducts').resolves(parameters)
     //act
     await ProductController.listProducts(req, res)
     //assert
     expect(res.status).to.have.been.calledWith(productsMock.statusCode.OK)
-    expect(res.json).to.have.been.calledWith(productsMock.listProducts)
+    expect(res.json).to.have.been.calledWith(parameters)
   })
 
 

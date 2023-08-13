@@ -8,4 +8,9 @@ const create = async (req: Request, res: Response): Promise<void> => {
   res.status(statusCode.CREATED).json(newProduct);
 };
 
-export default { create };
+const listProducts = async (req: Request, res: Response): Promise<void> => {
+  const products = await productsService.listProducts();
+  res.status(statusCode.OK).json(products);
+};
+
+export default { create, listProducts };

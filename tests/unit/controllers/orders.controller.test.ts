@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Request, Response } from 'express';
 import OrdersService from '../../../src/services/orders.service';
-import OrderModel from '../../../src/database/models/order.model';
 import OrdersController from '../../../src/controllers/orders.controller';
 import ordersMock from '../../mocks/orders.mock';
 
@@ -20,7 +19,7 @@ describe('OrdersController', function () {
   });
   it('should be orders are listed', async function () {
     //arrange
-    const orders = ordersMock.listed.map(order => OrderModel.build(order))
+    const orders = ordersMock.responseService;
     sinon.stub(OrdersService, 'listOrders').resolves(orders)
     //act
     await OrdersController.listOrders(req, res)

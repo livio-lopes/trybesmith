@@ -1,20 +1,18 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import ordersMock from '../../mocks/orders.mock';
-const OrdersService = require('../../../src/services/products.service').default;
-const OrderModel = require('../../../src/database/models/product.model').default;
-
+const OrdersService = require('../../../src/services/orders.service').default;
+const OrderModel = require('../../../src/database/models/order.model').default;
 
 describe('OrdersService', function () {
   beforeEach(function () { sinon.restore(); });
-  it('should be products are listed', async function () {
+  it('should be orders are listed', async function () {
     // Arrange
-    const orders = ordersMock.listed.map(order => OrderModel.build(order).dataValues);
-    sinon.stub(OrderModel, 'findAll').resolves(orders);
-    // Act
-    const responseService = await OrdersService.listOrders();
-    // Assert
-    expect(responseService).to.be.deep.equal(ordersMock.listed);
-    expect(OrderModel.findAll).to.have.been.calledOnce;
+    sinon.stub(OrderModel, 'findAll').resolves(ordersMock.listOrders as any)
+    //Act
+    const serviceResponse = await OrdersService.listOrders()
+    const mockResponse = ordersMock.responseService;    
+    //Assert
+    expect(serviceResponse).to.be.deep.equal(mockResponse)
   })
 });

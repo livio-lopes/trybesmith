@@ -24,6 +24,17 @@ const errorMessage = {
   REQUIRED_FIELD: { "message": "\"username\" and \"password\" are required" },
   INVALID_LOGIN: { "message": "Username or password invalid" }
 }
+
+const responseUnauthorized = {
+  status: status.BAD_REQUEST,
+  data: errorMessage.INVALID_LOGIN
+}
+
+const responseOk = {
+  status: status.OK,
+  data: fakeToken
+}
+
 export default {
   validPassword,
   validUserName,
@@ -35,5 +46,7 @@ export default {
   fakeToken,
   status,
   errorMessage,
-  loginHagar
+  loginHagar,
+  responseUnauthorized,
+  responseOk
 }

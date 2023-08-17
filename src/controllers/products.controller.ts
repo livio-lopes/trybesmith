@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import productsService from '../services/products.service';
-import statusCode from '../utlis/statusCode';
+import statusCode from '../utils/statusCode';
 
 const create = async (req: Request, res: Response): Promise<Response> => {
   const { name, price, orderId } = req.body;

@@ -8,7 +8,7 @@ const loginHagar = {
   password: bcrypt.hashSync('terrível', SALT_ROUNDS),
 }
 const validUserName = 'Hagar'
-const validPassword = bcrypt.hashSync('terrível', SALT_ROUNDS)
+const validPassword = 'terrível'
 const noUserLogin = { username: '', password: validPassword }
 const noPasswordLogin = { username: validUserName, password: '' }
 const invalidUserNameLogin = { username: 'Bode', password: validPassword }
@@ -26,7 +26,7 @@ const errorMessage = {
 }
 
 const responseUnauthorized = {
-  status: status.BAD_REQUEST,
+  status: status.UNAUTHORIZED,
   data: errorMessage.INVALID_LOGIN
 }
 

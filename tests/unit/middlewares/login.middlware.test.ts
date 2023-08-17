@@ -3,12 +3,14 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import { Request, Response } from 'express';
 import loginMock from '../../mocks/login.mock';
+import loginMiddleware from '../../../src/middlewares/login.middleware';
 
 chai.use(sinonChai);
 
 describe('LoginMiddleware', function () {
     const req = {} as Request;
     const res = {} as Response;
+    const next = sinon.stub();
 
     beforeEach(function () {
         res.status = sinon.stub().returns(res);
@@ -19,7 +21,7 @@ describe('LoginMiddleware', function () {
         //arrange
         req.body = loginMock.noUserLogin
         //act
-        await LoginMiddleware(req, res)
+        await loginMiddleware(req, res, next)
         //assert
         expect(res.status).to.have.been.calledWith(loginMock.status.BAD_REQUEST)
         expect(res.json).to.have.been.calledWith(loginMock.errorMessage.REQUIRED_FIELD) 
@@ -28,7 +30,7 @@ describe('LoginMiddleware', function () {
         //arrange
         req.body = loginMock.noPasswordLogin
         //act
-        await LoginMiddleware(req, res)
+        await loginMiddleware(req, res, next)
         //assert
         expect(res.status).to.have.been.calledWith(loginMock.status.BAD_REQUEST)
         expect(res.json).to.have.been.calledWith(loginMock.errorMessage.REQUIRED_FIELD) 

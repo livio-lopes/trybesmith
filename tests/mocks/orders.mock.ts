@@ -70,6 +70,16 @@ const responseServiceCreate = {
   "userId": 1,
 }
 
+const userNotFoundResponse = {
+  status: 404,
+  data: { "message": "\"userId\" not found" }
+}
+
+const userResponse = {
+  status:200,
+  data: user
+}
+
 const invalidProductIdsType = {
   "productIds": { invalid: 'invalid' },
   "userId": 1
@@ -140,5 +150,7 @@ export default {
   responseServiceCreate,
   user,
   validToken,
-  invalidProductIdsEmpty
+  invalidProductIdsEmpty,
+  userNotFoundResponse,
+  userResponse
 }

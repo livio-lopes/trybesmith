@@ -11,7 +11,7 @@ const listOrders = async ():Promise<Order[]> => {
     ] },  
   ) as unknown as OrderWithProducts[];
   const ordersWithProductsIds = orders.map((order) => {
-    const productIds = order.dataValues.productIds?.map((product) => product.id || 0);
+    const productIds = order.dataValues.productIds?.map((product) => product.id);
     return { ...order.dataValues, productIds };
   });
 

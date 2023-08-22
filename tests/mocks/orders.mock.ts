@@ -58,6 +58,33 @@ const responseService = [
       4
     ]
   },
+
+  
+]
+
+
+const responseNoProductIdsFindAll = [
+  {
+    "id": 1,
+    "userId": 1,
+  },
+  {
+    "id": 2,
+    "userId": 3,
+  },
+]
+
+const responseNoProductIds = [
+  {
+    "id": 1,
+    "userId": 1,
+    'productIds': undefined
+  },
+  {
+    "id": 2,
+    "userId": 3,
+    'productIds': undefined
+  },
 ]
 
 const createOrderValid = {
@@ -152,5 +179,7 @@ export default {
   validToken,
   invalidProductIdsEmpty,
   userNotFoundResponse,
-  userResponse
+  userResponse,
+  responseNoProductIds,
+  responseNoProductIdsFindAll,
 }

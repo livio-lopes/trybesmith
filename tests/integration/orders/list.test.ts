@@ -11,7 +11,7 @@ describe('GET /orders', function () {
   beforeEach(function () { sinon.restore(); });
   it('should return 200 when orders are listed', async function () {
    //arrange
-    sinon.stub(OrderModel, 'findAll').resolves(ordersMock.listOrders as any)
+    sinon.stub(OrderModel, 'findAll').resolves(ordersMock.listOrders  as any)
    //act
     const response = await chai.request(app).get('/orders')
    //assert

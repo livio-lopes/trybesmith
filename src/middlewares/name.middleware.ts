@@ -13,7 +13,7 @@ const nameMiddleware = (req: Request, res: Response, next: NextFunction) => {
   if (name.length < 3) {
     return res.status(statusCode.UNPROCESSABLE_ENTITY).json(messageError.NAME_LENGTH);
   }
-  next();
+  return next();
 };
 
 export default nameMiddleware;

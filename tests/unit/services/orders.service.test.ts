@@ -4,7 +4,7 @@ import ordersMock from '../../mocks/orders.mock';
 const OrdersService = require('../../../src/services/orders.service').default;
 const OrderModel = require('../../../src/database/models/order.model').default;
 const ProductModel = require('../../../src/database/models/product.model').default;
-describe.only('OrdersService', function () {
+describe('OrdersService', function () {
   beforeEach(function () { sinon.restore(); });
   it('should be orders are listed', async function () {
     // Arrange

@@ -10,7 +10,7 @@ chai.use(sinonChai);
 
 
 
-describe.only('ProductIdsMiddleware', function () {
+describe('ProductIdsMiddleware', function () {
   const req = {} as Request;
   const res = {} as Response;
   const next = sinon.stub();

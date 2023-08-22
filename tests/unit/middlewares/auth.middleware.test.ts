@@ -8,7 +8,7 @@ import authMiddleware from '../../../src/middlewares/auth.middleware';
 chai.use(sinonChai);
 
 
-describe.only('AuthMiddleware', function () {
+describe('AuthMiddleware', function () {
   const req = {} as Request;
   const res = {} as Response;
   const next = sinon.stub();

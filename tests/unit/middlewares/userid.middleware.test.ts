@@ -8,7 +8,7 @@ import messageError from '../../../src/utils/messageErro';
 import userIdMiddleware from '../../../src/middlewares/userId.middleware';
 chai.use(sinonChai);
 
-describe.only('UserIdMiddleware', function () {
+describe('UserIdMiddleware', function () {
   const req = {} as Request;
   const res = {} as Response;
   const next = sinon.stub();

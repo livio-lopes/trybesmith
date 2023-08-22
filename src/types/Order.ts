@@ -10,3 +10,8 @@ export type OrderWithProducts = {
     userId: number;
     productIds?: { id: number }[];
   } };
+
+export type OrderInput = {
+  userId: number;
+  productIds: number[];
+};

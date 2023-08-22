@@ -1,6 +1,6 @@
 import OrderModel from '../database/models/order.model';
 import ProductModel from '../database/models/product.model';
-import { Order, OrderWithProducts } from '../types/Order';
+import { Order, OrderWithProducts, OrderInput } from '../types/Order';
 
 const listOrders = async ():Promise<Order[]> => {
   const orders = await OrderModel.findAll(
@@ -18,4 +18,14 @@ const listOrders = async ():Promise<Order[]> => {
   return ordersWithProductsIds;
 };
 
-export default { listOrders };
+const createOrder = async (order: OrderInput):Promise<Order> => {
+  const orderCreated = await OrderModel.create(order);
+  await ProductModel.update(
+    { orderId: orderCreated.dataValues.id }, 
+    { where: { id: order.productIds } },
+  );
+
+  return orderCreated.dataValues;
+};
+
+export default { listOrders, createOrder };
